@@ -1,0 +1,17 @@
+interface JsonWebKey {
+    k: string;
+    activatesOn: number;
+    deactivatesOn: number;
+    expiresOn: number;
+}
+
+{
+    "k": "BYTES",
+    "activatesOn": 1_000_000,
+    "deactivatesOn": 1_000_000_000,
+    "expiresOn": 10_000_000_000_000_000
+}
+
+interface JsonWebKeySet {
+    keys: JsonWebKey[];
+}
