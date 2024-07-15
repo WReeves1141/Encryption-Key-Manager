@@ -1,8 +1,10 @@
 """ Programmer: Walter Reeves """
-import datetime as date
-import secrets
 from base64 import urlsafe_b64encode
 from math import floor
+
+import datetime as date
+
+import secrets
 
 
 class Key:
