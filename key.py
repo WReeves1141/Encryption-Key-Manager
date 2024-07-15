@@ -28,7 +28,7 @@ class Key:
         return self.bytes
 
     def to_json(self) -> dict[str, any]:
-        """ Converts the key to .json file type. """
+        """ Converts a key to JSON. """
 
         return {"k": str(self.as_base64url(), "utf-8"),
                 "activatesOn": floor(self.activates_on.timestamp()),
@@ -36,23 +36,23 @@ class Key:
                 "expiresOn": floor(self.expires_on.timestamp())}
 
     def as_base64url(self) -> bytes:
-        """ Converts the object to base 64. """
+        """ Converts a key to base64. """
 
         return urlsafe_b64encode(self.bytes)
 
     def is_activated(self) -> bool:
-        """ Checks to see if the key is activated. """
+        """ Checks if a key is activated. """
 
         return (self.activates_on <= date.datetime.now()
                 and not self.is_deactivated())
 
     def is_deactivated(self) -> bool:
-        """ Checks to see if the key is deactivated. """
+        """ Checks if a key is deactivated. """
 
         return (self.deactivates_on <= date.datetime.now()
                 and not self.is_expired())
 
     def is_expired(self) -> bool:
-        """ Checks to see if the key is expired. """
+        """ Checks if a key is expired. """
 
         return self.expires_on <= date.datetime.now()
