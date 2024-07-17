@@ -3,10 +3,10 @@ from key import Key
 class KeyManager:
 
     @staticmethod
-    def generate(num_keys: list) -> KeyManager:
+    def generate(num_keys: int) -> KeyManager:
         pass
 
-    def __init__(self, keys: int) -> None:
+    def __init__(self, keys: list[Key]) -> None:
         self.keys = Key
 
     def to_json(self) -> dict[str, any]:

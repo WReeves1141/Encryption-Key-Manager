@@ -1,38 +1,43 @@
-""" Programmer: Walter Reeves """
-from base64 import urlsafe_b64encode
+"""Key Manager class for the Key objects."""
+
+__all__ = ["KeyManager"]
+__author__ = "Walter Reeves"
+
 from key import Key
 import secrets
 
 
 class KeyManager:
-    """ Manages the keys created in the Key class. """
+    """Manages the Key objects."""
+
     @staticmethod
     def generate(num_keys):
-        """ Generates the keys in a list. """
+        """Generates a list of keys and returns a KeyManager object."""
+        key_bytes = 64
 
-        return KeyManager([Key.generate() for _ in range(1, num_keys + 1)])
+        return KeyManager([Key.generate(key_bytes) for _ in range(1, num_keys + 1)])
 
     def __init__(self, keys):
         self.keys = keys
 
     def to_json(self):
-        """ Converts the key to .json file type. """
+        """Converts a Key object to JSON and returns a dictionary."""
 
         return {"keys": [key.to_json() for key in self.keys]}
 
     def get_encryption_key(self):
-        """ Provides a random key to the user. """
+        """Gets a random key and returns a Key object."""
 
         return secrets.choice(self.get_encryption_keys())
 
     def get_encryption_keys(self):
-        """ Gets all possible encryption keys  """
+        """Gets all active encryption keys and returns a tuple."""
 
         return tuple(key for key in self.keys if key.is_activated()
                      and not key.is_deactivated())
 
     def get_decryption_keys(self):
-        """ Gets all active decryption keys. """
+        """Gets all active decryption keys and returns a tuple."""
 
         return tuple(key for key in self.keys if key.is_activated()
                      or key.is_deactivated() and not key.is_expired())
