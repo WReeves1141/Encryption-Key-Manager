@@ -15,23 +15,23 @@ class KeyManager:
     def __init__(self, keys):
         self.keys = keys
 
-    def to_json(self) -> dict[str, any]:
+    def to_json(self):
         """ Converts the key to .json file type. """
 
         return {"keys": [key.to_json() for key in self.keys]}
 
-    def get_encryption_key(self) -> Key:
+    def get_encryption_key(self):
         """ Provides a random key to the user. """
 
         return secrets.choice(self.get_encryption_keys())
 
-    def get_encryption_keys(self) -> tuple:
+    def get_encryption_keys(self):
         """ Gets all possible encryption keys  """
 
         return tuple(key for key in self.keys if key.is_activated()
                      and not key.is_deactivated())
 
-    def get_decryption_keys(self) -> tuple:
+    def get_decryption_keys(self):
         """ Gets all active decryption keys. """
 
         return tuple(key for key in self.keys if key.is_activated()

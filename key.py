@@ -24,10 +24,10 @@ class Key:
         self.deactivates_on = deactivates_on
         self.expires_on = expires_on
 
-    def __bytes__(self) -> bytes:
+    def __bytes__(self):
         return self.bytes
 
-    def to_json(self) -> dict[str, any]:
+    def to_json(self):
         """ Converts the key to .json file type. """
 
         return {"k": str(self.as_base64url(), "utf-8"),
