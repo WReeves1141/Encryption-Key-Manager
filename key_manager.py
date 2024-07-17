@@ -5,7 +5,7 @@ import secrets
 
 
 class KeyManager:
-    """ Man the keys created in the Key class. """
+    """ Manages the keys created in the Key class. """
     @staticmethod
     def generate(num_keys):
         """ Generates the keys in a list. """
